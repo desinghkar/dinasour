@@ -48,7 +48,6 @@ end
 
 function diff = measurementUpdate(N, obs, par_obs, sigma)
     diff_o = zeros(1, N);
-    temp_o = zeros(1, N);
     for i=1:N
        temp1 = par_obs(i, :) - obs;
        temp = temp1*temp1';

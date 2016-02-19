@@ -1,0 +1,31 @@
+function simpleMCMC
+    N=100;
+    prev_X = 500-1000*rand(1, 6);
+    for i=0:N
+       u = rand(1);
+       X_sample = samplePosterior(prev_X);
+       if(u < checkRatio(prev_X, X_sample))
+           prev_X = X_sample;
+       end
+    end
+end
+
+function sample = samplePosterior(prev_mean)
+    sample = mvnrnd(prev_mean, eye(6), 1);
+end
+
+
+function check = checkRatio(prev, new)
+    ratio =  likelihood(prev)/likelihood(new);
+    if ratio < 1
+        check = ratio;
+    else
+        check = 1;
+    end
+end
+
+function val = likelihood(X)
+    %Assuming ground is at mean=[0, 10, 0, 12, 50, 100]
+    mean = [0, 10, 0, 12, 50, 100];
+    dist = 
+end
